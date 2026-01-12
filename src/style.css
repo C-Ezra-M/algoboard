@@ -1,0 +1,89 @@
+:root {
+    --background: black;
+    --rankBackground: gray;
+    --rankText: white;
+    --eliminatedColor: red;
+    --font: 36px Verdana;
+    --eliminatedFont: bold italic 36px Verdana;
+    --font: 500 36px "Cooper Hewitt";
+    --eliminatedFont: bold italic 36px "Cooper Hewitt";
+    --boardHeight: 720px;
+    --boardWidth: 1280px;
+    --barHeight: 40px;
+    --rankWidth: 160px;
+    --rankPadding: 40px;
+    --boardPadding: 10px;
+    --maxBarWidth: 800px;
+    --barGap: 2px;
+    --beforeIncreaseTime: 2s;
+    --increaseTime: 1.5s;
+    --afterIncreaseTime: 0.5s;
+    --rankAdjustmentTime: 1.5s;
+    --afterRankAdjustmentTime: 0.5s;
+}
+
+*, ::before, ::after {
+    box-sizing: border-box;
+}
+
+.board {
+    background-color: #000000;
+    height: var(--boardHeight);
+    width: var(--boardWidth);
+    font: var(--font);
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 1rem;
+    .ranks, .bars {
+        display: flex;
+        gap: var(--barGap);
+        flex-direction: column;
+        justify-content: center;
+    }
+    .ranks {
+        background: var(--rankBackground);
+        width: var(--rankWidth);
+        padding-inline-end: var(--rankPadding);
+        text-align: right;
+        color: var(--rankText);
+        .rank {
+            height: var(--barHeight);
+        }
+    }
+    .bars {
+        background: var(--background);
+        padding: var(--boardPadding);
+        padding-left: 0;
+        flex: 1;
+        .bar {
+            height: var(--barHeight);
+            position: relative;
+            top: 0;
+            transition: top var(--rankAdjustmentTime) linear;
+            display: inline-flex;
+            .bar-inner {
+                width: 0;
+                /* width: 100px; */
+                text-align: right;
+                position: relative;
+                height: var(--barHeight);
+                display: inline-flex;
+                transition: width var(--increaseTime) linear;
+                .points {
+                    position: absolute;
+                    right: 3px;
+                }
+            }
+            .name {
+                display: inline-block;
+                padding: 0 5px;
+            }
+            .eliminated {
+                font: var(--eliminatedFont);
+                color: var(--eliminatedColor);
+                padding: 0 2px 0 20px;
+                display: none;
+            }
+        }
+    }
+}

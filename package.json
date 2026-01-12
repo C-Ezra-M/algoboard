@@ -1,0 +1,19 @@
+{
+  "name": "algoboard",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^7.2.4"
+  },
+  "dependencies": {
+    "blissfuljs": "^1.0.6",
+    "csv": "^6.4.1",
+    "pythonic": "^2.0.3"
+  }
+}

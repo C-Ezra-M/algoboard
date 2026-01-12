@@ -1,0 +1,45 @@
+# Start a line with '#' to make a comment.
+# Entries starting with '\' are settings.
+\bg;black
+\rankBg;gray
+\rankText;white
+\eliminatedColor;red
+#\font;36px Verdana
+#\eliminatedFont;bold italic 36px Verdana
+\font;500 36px "Cooper Hewitt"
+\eliminatedFont;bold italic 36px "Cooper Hewitt"
+\boardHeight;720px
+\boardWidth;1280px
+\barHeight;40px
+\rankWidth;160px
+\rankPadding;40px
+\boardPadding;10px
+\maxBarWidth;900px
+\barGap;2px
+# only affects formatting of numbers at this moment
+\lang;en
+\beforeIncreaseTime;2s
+\increaseTime;1.5s
+\afterIncreaseTime;0.5s
+\rankAdjustmentTime;1.5s
+\afterRankAdjustmentTime;0.5s
+# how many times to interpolate the scores per second
+\scoreInterpRate;30
+\autoEliminate;true
+\eliminatedAfter;1
+Green;#008000;0;3
+Olive;#609000;0;15
+Yellow;#ffff00;0;100
+Lime;#40ff00;0;40
+Cyan;#00ffff;0;6
+Blue;#0030ff;0;25
+Navy;#002090;0;8
+Purple;#9000aa;0;2
+Lavender;#bb80ff;0;30
+Pink;#ff80ee;0;10
+Magenta;#ff00ff;0;12
+Red;#ff0000;0;20
+Brown;#804000;0;50
+Orange;#ff8000;0;70
+Tan;#cc9960;0;1
+Gray;#808080;0;4
