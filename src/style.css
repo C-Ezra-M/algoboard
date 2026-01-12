@@ -52,7 +52,6 @@
             height: var(--barHeight);
             position: relative;
             top: 0;
-            transition: top var(--rankAdjustmentTime) linear;
             display: inline-flex;
             .bar-inner {
                 width: 0;
@@ -61,7 +60,6 @@
                 position: relative;
                 height: var(--barHeight);
                 display: inline-flex;
-                transition: width var(--increaseTime) linear;
                 .points {
                     position: absolute;
                     right: 3px;
