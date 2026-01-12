@@ -1,5 +1,6 @@
 import { parse } from "csv/browser/esm/sync";
 import { enumerate } from "pythonic";
+import { animate, utils } from "animejs";
 import "blissfuljs/bliss.shy";
 const $ = Bliss;
 
@@ -29,6 +30,7 @@ const defaultConfig = {
 }
 let config = defaultConfig;
 let entries = {};
+let pointScale = 1;
 
 function formatNum(n) {
     return new Intl.NumberFormat(config.lang).format(n)
@@ -57,8 +59,8 @@ function pxToNum(px) {
     return parseInt(px.replace(/px$/, ""))
 }
 
-function pointScale(entryList) {
-    return pxToNum(config.maxBarWidth) / entryList.toSorted((a, b) => b.scoreAfter - a.scoreAfter)
+function calcPointScale(entryList) {
+    return pxToNum(config.maxBarWidth) / Math.max(...entryList.map(e => e.scoreAfter))
 }
 
 function parseConfig(contents) {
@@ -75,14 +77,21 @@ function parseConfig(contents) {
         ...config,
         ...Object.fromEntries(parseResult.filter(e => e[0].startsWith("\\")).map(e => [e[0].replace(/^\\/, ""), e[1]]))
     }
-    entries = parseResult.filter(e => !e[0].startsWith("\\")).map(e => ({
-        name: e[0],
-        color: e[1],
-        scoreBefore: parseInt(e[2]),
-        scoreAfter: parseInt(e[3]),
-        eliminatedBefore: e[4] ?? false,
-        eliminatedAfter: e[5] ?? false,
-    }))
+    entries = parseResult.filter(e => !e[0].startsWith("\\")).map(e => {
+        const obj = {
+            name: e[0],
+            color: e[1],
+            scoreBefore: parseInt(e[2]),
+            scoreAfter: parseInt(e[3]),
+            eliminatedBefore: e[4] ?? false,
+            eliminatedAfter: e[5] ?? false,
+            resetAnimationScore() {
+                this.animationScore = this.scoreBefore;
+            }
+        }
+        obj.resetAnimationScore()
+        return obj
+    })
     formScoreboard(entries)
 }
 
@@ -119,6 +128,7 @@ function formScoreboard(entryList) {
             ]
         }))
     }
+    pointScale = calcPointScale(entries)
 }
 
 async function fileImportEvent() {
@@ -128,12 +138,38 @@ async function fileImportEvent() {
 }
 
 function animateScoreboard() {
-
+    for (let i of entries) {
+        animateBar(i)
+    }
 }
 
-function animateBar(entry) {
-
+async function animateBar(entry) {
+    const bar = $(`#bars [data-name="${CSS.escape(entry.name)}"]`)
+    // I have to use the Web Animations API for the bar because animating it
+    // with animejs would reduce the bar (sometimes to zero) after the animation,
+    // which is annoying.
+    $(".bar-inner", bar).animate(
+        {
+            width: [
+                pointScale * entry.scoreBefore + "px",
+                pointScale * entry.scoreAfter + "px",
+            ],
+        }, {
+            duration: 2500,
+            fill: "forwards",
+        }
+    )
+    animate(entry, {
+        animationScore: entry.scoreAfter,
+        modifier: formatNum,
+        duration: config.increaseTime,
+        ease: 'linear',
+        onUpdate: () => {
+            $(".points", bar).innerText = utils.round(0)(entry.animationScore)
+        },
+        onComplete: () => entry.resetAnimationScore(),
+    })
 }
 
 $("#importFile").addEventListener("input", fileImportEvent)
-$("#animate").addEventListener("input", animateScoreboard)
+$("#animate").addEventListener("click", animateScoreboard)
