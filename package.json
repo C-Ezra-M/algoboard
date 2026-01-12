@@ -1,7 +1,7 @@
 {
   "name": "algoboard",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,6 +12,7 @@
     "vite": "^7.2.4"
   },
   "dependencies": {
+    "animejs": "^4.2.2",
     "blissfuljs": "^1.0.6",
     "csv": "^6.4.1",
     "pythonic": "^2.0.3"
