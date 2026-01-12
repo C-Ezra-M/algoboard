@@ -4,8 +4,8 @@ import "blissfuljs/bliss.shy";
 const $ = Bliss;
 
 const defaultConfig = {
-    bgColor: "black",
-    rankBgColor: "gray",
+    background: "black",
+    rankBackground: "gray",
     eliminatedColor: "red",
     font: "40px Verdana",
     eliminatedFont: "bold italic 40px Verdana",
@@ -18,11 +18,11 @@ const defaultConfig = {
     maxBarWidth: "900px",
     barGap: "5px",
     lang: "en", // right now only affects the formatting of scores
-    beforeIncreaseTime: "2s",
-    increaseTime: "1.5s",
-    afterIncreaseTime: "0.5s",
-    rankAdjustmentTime: "1.5s",
-    afterRankAdjustmentTime: "0.5s",
+    beforeIncreaseTime: 2000,
+    increaseTime: 2500,
+    afterIncreaseTime: 1000,
+    rankAdjustmentTime: 2500,
+    afterRankAdjustmentTime: 1000,
     scoreInterpRate: 30,
     autoEliminate: true,
     eliminatedAfter: 1,

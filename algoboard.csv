@@ -1,11 +1,9 @@
 # Start a line with '#' to make a comment.
 # Entries starting with '\' are settings.
-\bg;black
-\rankBg;gray
+\background;black
+\rankBackground;gray
 \rankText;white
 \eliminatedColor;red
-#\font;36px Verdana
-#\eliminatedFont;bold italic 36px Verdana
 \font;500 36px "Cooper Hewitt"
 \eliminatedFont;bold italic 36px "Cooper Hewitt"
 \boardHeight;720px
@@ -18,13 +16,12 @@
 \barGap;2px
 # only affects formatting of numbers at this moment
 \lang;en
-\beforeIncreaseTime;2s
-\increaseTime;1.5s
-\afterIncreaseTime;0.5s
-\rankAdjustmentTime;1.5s
-\afterRankAdjustmentTime;0.5s
-# how many times to interpolate the scores per second
-\scoreInterpRate;30
+# all time settings are in milliseconds (1000ms = 1s)
+\beforeIncreaseTime;2000
+\increaseTime;2500
+\afterIncreaseTime;1000
+\rankAdjustmentTime;2500
+\afterRankAdjustmentTime;1000
 \autoEliminate;true
 \eliminatedAfter;1
 Green;#008000;0;3

@@ -3,8 +3,6 @@
     --rankBackground: gray;
     --rankText: white;
     --eliminatedColor: red;
-    --font: 36px Verdana;
-    --eliminatedFont: bold italic 36px Verdana;
     --font: 500 36px "Cooper Hewitt";
     --eliminatedFont: bold italic 36px "Cooper Hewitt";
     --boardHeight: 720px;
@@ -15,11 +13,6 @@
     --boardPadding: 10px;
     --maxBarWidth: 800px;
     --barGap: 2px;
-    --beforeIncreaseTime: 2s;
-    --increaseTime: 1.5s;
-    --afterIncreaseTime: 0.5s;
-    --rankAdjustmentTime: 1.5s;
-    --afterRankAdjustmentTime: 0.5s;
 }
 
 *, ::before, ::after {
