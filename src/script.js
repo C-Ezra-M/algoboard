@@ -125,6 +125,7 @@ function formScoreboard(entryList) {
     entryList = entryList.toSorted((a, b) => b.scoreBefore - a.scoreBefore)
     $("#bars").innerText = "";
     $("#ranks").innerText = "";
+    pointScale = calcPointScale(entries)
     for (let [n, i] of enumerate(entryList)) {
         $("#ranks").appendChild($.create("div", {
             contents: ordinal(n + 1),
@@ -138,6 +139,7 @@ function formScoreboard(entryList) {
                     className: "bar-inner",
                     style: {
                         backgroundColor: i.color,
+                        width: i.scoreBefore * pointScale + "px",
                     },
                     contents: $.create("div", {
                         className: "points",
@@ -154,7 +156,10 @@ function formScoreboard(entryList) {
             ]
         }))
     }
-    pointScale = calcPointScale(entries)
+}
+
+async function sleep(t) {
+    return new Promise((resolve, reject) => setTimeout(resolve, t))
 }
 
 async function fileImportEvent() {
@@ -163,25 +168,47 @@ async function fileImportEvent() {
     console.log(entries)
 }
 
-function animateScoreboard() {
+async function animateScoreboard() {
+    // Reset scoreboard
+    for (let i of entries) {
+        getBarFromEntry(i).style.transform = ""
+        $(".bar-inner", getBarFromEntry(i)).style.width = pointScale * i.scoreBefore + "px"
+        $(".points", getBarFromEntry(i)).innerText = i.scoreBefore
+    }
+    await sleep(config.beforeIncreaseTime)
     for (let i of entries) {
         animateBar(i)
     }
+    await sleep(config.increaseTime + config.afterIncreaseTime)
+    const sortedEntryList = entries.toSorted((a, b) => b.scoreAfter - a.scoreAfter)
+    for (let [n, i] of enumerate(sortedEntryList)) {
+        moveBar(i, entries.indexOf(i), n)
+    }
+    await sleep(config.rankAdjustmentTime + config.afterRankAdjustmentTime)
+
+}
+
+function getBarFromEntry(entry) {
+    return getBarFromName(entry.name)
+}
+
+function getBarFromName(name) {
+    return $(`#bars [data-name="${CSS.escape(name)}"]`)
 }
 
 async function animateBar(entry) {
-    const bar = $(`#bars [data-name="${CSS.escape(entry.name)}"]`)
+    const bar = getBarFromEntry(entry)
     // I have to use the Web Animations API for the bar because animating it
     // with animejs would reduce the bar (sometimes to zero) after the animation,
     // which is annoying.
-    $(".bar-inner", bar).animate(
+    const barIncreaseAnimation = $(".bar-inner", bar).animate(
         {
             width: [
                 pointScale * entry.scoreBefore + "px",
                 pointScale * entry.scoreAfter + "px",
             ],
         }, {
-            duration: 2500,
+            duration: config.increaseTime,
             fill: "forwards",
         }
     )
@@ -194,6 +221,18 @@ async function animateBar(entry) {
             $(".points", bar).innerText = utils.round(0)(entry.animationScore)
         },
         onComplete: () => entry.resetAnimationScore(),
+    })
+    await barIncreaseAnimation.finished;
+    barIncreaseAnimation.commitStyles();
+    barIncreaseAnimation.cancel();
+}
+
+function moveBar(entry, initialPos, finalPos) {
+    const bar = getBarFromEntry(entry)
+    animate(bar, {
+        translateY: (finalPos - initialPos) * (pxToNum(config.barHeight) + pxToNum(config.barGap)),
+        duration: config.rankAdjustmentTime,
+        ease: 'inOut',
     })
 }
 
