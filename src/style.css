@@ -27,6 +27,7 @@
     display: flex;
     align-items: stretch;
     margin-bottom: 1rem;
+    overflow: hidden;
     .ranks, .bars {
         display: flex;
         gap: var(--barGap);
