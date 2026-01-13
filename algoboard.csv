@@ -19,7 +19,7 @@
 # all time settings are in milliseconds (1000ms = 1s)
 \beforeIncreaseTime;2000
 \increaseTime;2500
-\afterIncreaseTime;1000
+\afterIncreaseTime;0
 \rankAdjustmentTime;2500
 \afterRankAdjustmentTime;1000
 \autoEliminate;true
@@ -38,5 +38,5 @@ Magenta;#ff00ff;0;12
 Red;#ff0000;0;20
 Brown;#804000;0;50
 Orange;#ff8000;0;70
-Tan;#cc9960;0;1
+Tan;#cc9960;10;1
 Gray;#808080;0;4

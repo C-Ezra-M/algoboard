@@ -30,15 +30,16 @@ const defaultConfig = {
     lang: "en", // right now only affects the formatting of scores
     beforeIncreaseTime: 2000,
     increaseTime: 2500,
-    afterIncreaseTime: 1000,
+    afterIncreaseTime: 0,
     rankAdjustmentTime: 2500,
     afterRankAdjustmentTime: 1000,
-    scoreInterpRate: 30,
     autoEliminate: true,
+    eliminatedBefore: -1,
+    // optional, the default of -1 means "eliminate 1 person only", so does any negative or indefinite (NaN, Infinity, etc.)
     eliminatedAfter: 1,
 }
 let config = defaultConfig;
-let entries = {};
+let entries = [];
 let pointScale = 1;
 
 function formatNum(n) {
@@ -96,15 +97,27 @@ function parseConfig(contents) {
             color: e[1],
             scoreBefore: parseInt(e[2]),
             scoreAfter: parseInt(e[3]),
-            eliminatedBefore: e[4] ?? false,
-            eliminatedAfter: e[5] ?? false,
+            // status won't be modified, but visibleStatus can be
+            status: e[4], // safe, eliminated, newEliminated, rejoining
+            visibleStatus: e[4],
             resetAnimationScore() {
                 this.animationScore = this.scoreBefore;
+            },
+            tryEliminate() {
+                if (this.visibleStatus === "newEliminated") {
+                    this.visibleStatus = "eliminated"
+                }
+                if (this.visibleStatus === "rejoining") {
+                    this.visibleStatus = "safe"
+                }
+            },
+            resetStatus() {
+                this.visibleStatus = this.status
             }
         }
         obj.resetAnimationScore()
         return obj
-    })
+    }).toSorted((a, b) => b.scoreBefore - a.scoreBefore)
     formScoreboard(entries)
 }
 
