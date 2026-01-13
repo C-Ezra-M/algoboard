@@ -4,6 +4,15 @@ import { animate, utils } from "animejs";
 import "blissfuljs/bliss.shy";
 const $ = Bliss;
 
+function getTypeConverter(v) {
+    switch (typeof v) {
+        case 'number': return Number
+        case 'bigint': return BigInt
+        case 'boolean': return JSON.parse
+        default: return (v) => v
+    }
+}
+
 const defaultConfig = {
     background: "black",
     rankBackground: "gray",
@@ -75,7 +84,11 @@ function parseConfig(contents) {
     config = {
         ...defaultConfig,
         ...config,
-        ...Object.fromEntries(parseResult.filter(e => e[0].startsWith("\\")).map(e => [e[0].replace(/^\\/, ""), e[1]]))
+        ...Object.fromEntries(
+            parseResult.filter(e => e[0].startsWith("\\"))
+                .map(e => [e[0].replace(/^\\/, ""), e[1]]) // remove backslashes
+                .map(e => [e[0], getTypeConverter(defaultConfig[e[0]])(e[1])]) // applies schema based on default config
+        )
     }
     entries = parseResult.filter(e => !e[0].startsWith("\\")).map(e => {
         const obj = {
