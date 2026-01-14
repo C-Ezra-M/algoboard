@@ -17,6 +17,7 @@ const defaultConfig = {
     background: "black",
     rankBackground: "gray",
     eliminatedColor: "red",
+    rejoiningColor: "lime",
     font: "40px Verdana",
     eliminatedFont: "bold italic 40px Verdana",
     boardHeight: "720px",
