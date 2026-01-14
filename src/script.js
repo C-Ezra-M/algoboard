@@ -16,6 +16,7 @@ function getTypeConverter(v) {
 const defaultConfig = {
     background: "black",
     rankBackground: "gray",
+    rankText: "white",
     eliminatedColor: "red",
     rejoiningColor: "lime",
     font: "40px Verdana",
@@ -98,27 +99,25 @@ function parseConfig(contents) {
             color: e[1],
             scoreBefore: parseInt(e[2]),
             scoreAfter: parseInt(e[3]),
-            // status won't be modified, but visibleStatus can be
+            initialStatus: e[4],
             status: e[4], // safe, eliminated, newEliminated, rejoining
-            visibleStatus: e[4],
             resetAnimationScore() {
                 this.animationScore = this.scoreBefore;
             },
-            tryEliminate() {
-                if (this.visibleStatus === "newEliminated") {
-                    this.visibleStatus = "eliminated"
+            statusAfter() {
+                if (this.status === "newEliminated") {
+                    return "eliminated"
                 }
-                if (this.visibleStatus === "rejoining") {
-                    this.visibleStatus = "safe"
+                if (this.status === "rejoining") {
+                    return "safe"
                 }
+                return this.status
             },
-            resetStatus() {
-                this.visibleStatus = this.status
-            }
         }
         obj.resetAnimationScore()
         return obj
     }).toSorted((a, b) => b.scoreBefore - a.scoreBefore)
+    autoEliminate(entries)
     formScoreboard(entries)
 }
 
@@ -153,10 +152,22 @@ function formScoreboard(entryList) {
                         color: i.color,
                     },
                     contents: i.name,
-                })
+                }),
+                $.create("div", {
+                    className: "eliminated tag",
+                    contents: "ELIMINATED",
+                }),
+                $.create("div", {
+                    className: "rejoining tag",
+                    contents: "REJOINING",
+                }),
             ]
         }))
     }
+    if (config.autoEliminate) {
+        autoEliminate()
+    }
+    showElimination(entries, true)
 }
 
 async function sleep(t) {
@@ -167,6 +178,36 @@ async function fileImportEvent() {
     parseConfig(await this.files[0].text())
     console.log(config)
     console.log(entries)
+}
+
+function autoEliminate(entries) {
+    // TODO
+}
+
+function showElimination(entryList, beforeElimination) {
+    for (let i of entryList) {
+        const bar = getBarFromEntry(i);
+        const eliminatedTag = $(".eliminated", bar)
+        const rejoiningTag = $(".rejoining", bar)
+        if (
+            i.status === "safe"
+            || i.status === "newEliminated" && beforeElimination
+        ) {
+            eliminatedTag.classList.remove("show")
+            rejoiningTag.classList.remove("show")
+        }
+        if (
+            i.status === "eliminated"
+            || i.status === "newEliminated" && !beforeElimination
+        ) {
+            eliminatedTag.classList.add("show")
+            rejoiningTag.classList.remove("show")
+        }
+        if (i.status === "rejoining") {
+            eliminatedTag.classList.remove("show")
+            rejoiningTag.classList.add("show")
+        }
+    }
 }
 
 async function animateScoreboard() {
@@ -186,7 +227,7 @@ async function animateScoreboard() {
         moveBar(i, entries.indexOf(i), n)
     }
     await sleep(config.rankAdjustmentTime + config.afterRankAdjustmentTime)
-
+    showElimination(entries, false)
 }
 
 function getBarFromEntry(entry) {
