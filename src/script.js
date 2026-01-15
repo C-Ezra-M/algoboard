@@ -36,9 +36,8 @@ const defaultConfig = {
     rankAdjustmentTime: 2500,
     afterRankAdjustmentTime: 1000,
     autoEliminate: true,
-    eliminatedBefore: -1,
-    // optional, the default of -1 means "eliminate 1 person only", so does any negative or indefinite (NaN, Infinity, etc.)
-    eliminatedAfter: 1,
+    newEliminations: 1,
+    eliminatedBefore: 0,
 }
 let config = defaultConfig;
 let entries = [];
@@ -113,6 +112,9 @@ function parseConfig(contents) {
                 }
                 return this.status
             },
+            resetStatus() {
+                this.status = this.initialStatus;
+            }
         }
         obj.resetAnimationScore()
         return obj
@@ -165,7 +167,7 @@ function formScoreboard(entryList) {
         }))
     }
     if (config.autoEliminate) {
-        autoEliminate()
+        autoEliminate(entries)
     }
     showElimination(entries, true)
 }
@@ -180,8 +182,25 @@ async function fileImportEvent() {
     console.log(entries)
 }
 
+function getItemsByNumber(array, n) {
+    if (n === 0) {
+        return []
+    }
+    return array.slice(n)
+}
+
 function autoEliminate(entries) {
-    // TODO
+    const sortedEntries = entries.toSorted((a, b) => b.scoreAfter - a.scoreAfter)
+    const sortedEntriesBefore = entries.toSorted((a, b) => b.scoreBefore - a.scoreBefore)
+
+
+    const eliminatedEntries = getItemsByNumber(sortedEntries, -config.eliminatedBefore)
+    const newEliminatedEntries = getItemsByNumber(sortedEntries, sortedEntries.length - config.eliminatedBefore - config.newEliminations)
+    const otherEntries = sortedEntries.filter(e => !eliminatedEntries.includes(e) || !newEliminatedEntries.includes(e))
+
+    eliminatedEntries.map(e => e.status = "eliminated")
+    newEliminatedEntries.map(e => e.status = "newEliminated")
+    getItemsByNumber(sortedEntriesBefore, -config.eliminatedBefore).filter(e => otherEntries.includes(e)).map(e => e.status = "rejoining")
 }
 
 function showElimination(entryList, beforeElimination) {
