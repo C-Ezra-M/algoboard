@@ -47,10 +47,6 @@ function formatNum(n) {
     return new Intl.NumberFormat(config.lang).format(n)
 }
 
-function lerp(a, b, alpha) {
-    return (1 - alpha) * a + alpha * b
-}
-
 function ordinal(n) {
     let det = parseInt(n.toString().slice(-2));
     if (
@@ -98,8 +94,8 @@ function parseConfig(contents) {
             color: e[1],
             scoreBefore: parseInt(e[2]),
             scoreAfter: parseInt(e[3]),
-            initialStatus: e[4],
-            status: e[4], // safe, eliminated, newEliminated, rejoining
+            initialStatus: e[4] ?? "safe",
+            status: e[4] ?? "safe", // safe, eliminated, newEliminated, rejoining
             resetAnimationScore() {
                 this.animationScore = this.scoreBefore;
             },
@@ -193,11 +189,11 @@ function autoEliminate(entries) {
     const sortedEntries = entries.toSorted((a, b) => b.scoreAfter - a.scoreAfter)
     const sortedEntriesBefore = entries.toSorted((a, b) => b.scoreBefore - a.scoreBefore)
 
-
     const eliminatedEntries = getItemsByNumber(sortedEntries, -config.eliminatedBefore)
-    const newEliminatedEntries = getItemsByNumber(sortedEntries, sortedEntries.length - config.eliminatedBefore - config.newEliminations)
-    const otherEntries = sortedEntries.filter(e => !eliminatedEntries.includes(e) || !newEliminatedEntries.includes(e))
+    const newEliminatedEntries = getItemsByNumber(sortedEntries, sortedEntries.length - config.eliminatedBefore - config.newEliminations).slice(0, config.newEliminations)
+    const otherEntries = sortedEntries.filter(e => !eliminatedEntries.includes(e) && !newEliminatedEntries.includes(e))
 
+    //debugger
     eliminatedEntries.map(e => e.status = "eliminated")
     newEliminatedEntries.map(e => e.status = "newEliminated")
     getItemsByNumber(sortedEntriesBefore, -config.eliminatedBefore).filter(e => otherEntries.includes(e)).map(e => e.status = "rejoining")
@@ -231,6 +227,7 @@ function showElimination(entryList, beforeElimination) {
 
 async function animateScoreboard() {
     // Reset scoreboard
+    showElimination(entries, true)
     for (let i of entries) {
         getBarFromEntry(i).style.transform = ""
         $(".bar-inner", getBarFromEntry(i)).style.width = pointScale * i.scoreBefore + "px"
@@ -247,6 +244,9 @@ async function animateScoreboard() {
     }
     await sleep(config.rankAdjustmentTime + config.afterRankAdjustmentTime)
     showElimination(entries, false)
+    if (config.autoEliminate) {
+        autoEliminate(entries)
+    }
 }
 
 function getBarFromEntry(entry) {
