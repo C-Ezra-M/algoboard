@@ -104,8 +104,6 @@
     height: var(--boardHeight);
     width: var(--boardWidth);
     font: var(--font);
-    display: flex;
-    align-items: stretch;
     margin-bottom: 1rem;
     overflow: hidden;
     .ranks, .bars {
@@ -113,6 +111,7 @@
         gap: var(--barGap);
         flex-direction: column;
         justify-content: center;
+        height: 100%;
     }
     .ranks {
         background: var(--rankBackground);
@@ -120,6 +119,7 @@
         padding-inline-end: var(--rankPadding);
         text-align: right;
         color: var(--rankText);
+        float: left;
         .rank {
             height: var(--barHeight);
         }
@@ -128,7 +128,6 @@
         background: var(--background);
         padding: var(--boardPadding);
         padding-left: 0;
-        flex: 1;
         .bar {
             height: var(--barHeight);
             position: relative;
@@ -165,4 +164,9 @@
             }
         }
     }
+}
+
+html {
+    font-family: 'Cooper Hewitt', sans-serif;
+    font-weight: 500;
 }
