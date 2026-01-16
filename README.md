@@ -11,4 +11,4 @@
 
 Generally, refer to the LICENSE file.
 
-The [Cooper Hewitt typeface](https://www.cooperhewitt.org/open-source-at-cooper-hewitt/cooper-hewitt-the-typeface-by-chester-jenkins/) ([https://github.com/cooperhewitt/cooperhewitt-typeface](GitHub repository)) is subject to the [SIL Open Font License](https://github.com/cooperhewitt/cooperhewitt-typeface/blob/master/files/-OFL-FAQ.txt). I (C.Ezra.M) do not claim ownership of the Cooper Hewitt typeface.
+The [Cooper Hewitt typeface](https://www.cooperhewitt.org/open-source-at-cooper-hewitt/cooper-hewitt-the-typeface-by-chester-jenkins/) ([GitHub repository](https://github.com/cooperhewitt/cooperhewitt-typeface)) is subject to the [SIL Open Font License](https://github.com/cooperhewitt/cooperhewitt-typeface/blob/master/files/-OFL-FAQ.txt). I (C.Ezra.M) do not claim ownership of the Cooper Hewitt typeface.
