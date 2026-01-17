@@ -16,89 +16,6 @@
     --barGap: 2px;
 }
 
-/* Cooper Hewitt font-face declarations */
-@font-face {
-    font-family: 'Cooper Hewitt';
-    font-weight: 200;
-    src: url('../CooperHewitt-Thin.ttf');
-}
-@font-face {
-    font-family: 'Cooper Hewitt';
-    font-style: italic;
-    font-weight: 200;
-    src: url('../CooperHewitt-ThinItalic.ttf');
-}
-@font-face {
-    font-family: 'Cooper Hewitt';
-    font-weight: 300;
-    src: url('../CooperHewitt-Light.ttf');
-}
-@font-face {
-    font-family: 'Cooper Hewitt';
-    font-style: italic;
-    font-weight: 300;
-    src: url('../CooperHewitt-LightItalic.ttf');
-}
-@font-face {
-    font-family: 'Cooper Hewitt';
-    font-weight: 400;
-    src: url('../CooperHewitt-Book.ttf');
-}
-@font-face {
-    font-family: 'Cooper Hewitt';
-    font-style: italic;
-    font-weight: 400;
-    src: url('../CooperHewitt-BookItalic.ttf');
-}
-@font-face {
-    font-family: 'Cooper Hewitt';
-    font-weight: 500;
-    src: url('../CooperHewitt-Medium.ttf');
-}
-@font-face {
-    font-family: 'Cooper Hewitt';
-    font-style: italic;
-    font-weight: 500;
-    src: url('../CooperHewitt-MediumItalic.ttf');
-}
-@font-face {
-    font-family: 'Cooper Hewitt';
-    font-weight: 600;
-    src: url('../CooperHewitt-Semibold.ttf');
-}
-@font-face {
-    font-family: 'Cooper Hewitt';
-    font-style: italic;
-    font-weight: 600;
-    src: url('../CooperHewitt-SemiboldItalic.ttf');
-}
-@font-face {
-    font-family: 'Cooper Hewitt';
-    font-weight: 700;
-    src: url('../CooperHewitt-Bold.ttf');
-}
-@font-face {
-    font-family: 'Cooper Hewitt';
-    font-style: italic;
-    font-weight: 700;
-    src: url('../CooperHewitt-BoldItalic.ttf');
-}
-@font-face {
-    font-family: 'Cooper Hewitt';
-    font-weight: 800;
-    src: url('../CooperHewitt-Heavy.ttf');
-}
-@font-face {
-    font-family: 'Cooper Hewitt';
-    font-style: italic;
-    font-weight: 800;
-    src: url('../CooperHewitt-HeavyItalic.ttf');
-}
-
-*, ::before, ::after {
-    box-sizing: border-box;
-}
-
 .board {
     background-color: #000000;
     height: var(--boardHeight);
@@ -119,7 +36,7 @@
         padding-inline-end: var(--rankPadding);
         text-align: right;
         color: var(--rankText);
-        float: left;
+        float: inline-start;
         .rank {
             height: var(--barHeight);
         }
@@ -164,9 +81,4 @@
             }
         }
     }
-}
-
-html {
-    font-family: 'Cooper Hewitt', sans-serif;
-    font-weight: 500;
 }

@@ -1,0 +1,117 @@
+/* Cooper Hewitt font-face declarations */
+@font-face {
+    font-family: 'Cooper Hewitt';
+    font-weight: 200;
+    src: url('../CooperHewitt-Thin.ttf');
+}
+@font-face {
+    font-family: 'Cooper Hewitt';
+    font-style: italic;
+    font-weight: 200;
+    src: url('../CooperHewitt-ThinItalic.ttf');
+}
+@font-face {
+    font-family: 'Cooper Hewitt';
+    font-weight: 300;
+    src: url('../CooperHewitt-Light.ttf');
+}
+@font-face {
+    font-family: 'Cooper Hewitt';
+    font-style: italic;
+    font-weight: 300;
+    src: url('../CooperHewitt-LightItalic.ttf');
+}
+@font-face {
+    font-family: 'Cooper Hewitt';
+    font-weight: 400;
+    src: url('../CooperHewitt-Book.ttf');
+}
+@font-face {
+    font-family: 'Cooper Hewitt';
+    font-style: italic;
+    font-weight: 400;
+    src: url('../CooperHewitt-BookItalic.ttf');
+}
+@font-face {
+    font-family: 'Cooper Hewitt';
+    font-weight: 500;
+    src: url('../CooperHewitt-Medium.ttf');
+}
+@font-face {
+    font-family: 'Cooper Hewitt';
+    font-style: italic;
+    font-weight: 500;
+    src: url('../CooperHewitt-MediumItalic.ttf');
+}
+@font-face {
+    font-family: 'Cooper Hewitt';
+    font-weight: 600;
+    src: url('../CooperHewitt-Semibold.ttf');
+}
+@font-face {
+    font-family: 'Cooper Hewitt';
+    font-style: italic;
+    font-weight: 600;
+    src: url('../CooperHewitt-SemiboldItalic.ttf');
+}
+@font-face {
+    font-family: 'Cooper Hewitt';
+    font-weight: 700;
+    src: url('../CooperHewitt-Bold.ttf');
+}
+@font-face {
+    font-family: 'Cooper Hewitt';
+    font-style: italic;
+    font-weight: 700;
+    src: url('../CooperHewitt-BoldItalic.ttf');
+}
+@font-face {
+    font-family: 'Cooper Hewitt';
+    font-weight: 800;
+    src: url('../CooperHewitt-Heavy.ttf');
+}
+@font-face {
+    font-family: 'Cooper Hewitt';
+    font-style: italic;
+    font-weight: 800;
+    src: url('../CooperHewitt-HeavyItalic.ttf');
+}
+
+*, ::before, ::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Cooper Hewitt', sans-serif;
+    font-weight: 500;
+}
+table.content-table {
+    border-top: 0.1rem solid #333;
+    border-collapse: collapse;
+    > * > tr, > tr {
+        th, td {
+            border-bottom: 0.1rem solid #333;
+            padding: 0.3rem 0.4rem;
+        }
+    }
+    > * > tr:hover, > tr:hover {
+        th, td {
+            background-color: #eee;
+        }
+    }
+}
+
+code, var, samp, kbd {
+    font-family: monospace,serif;
+    :not(pre) > & {
+        background-color: #ddd;
+        padding: 0 0.25rem;
+    }
+}
+pre {
+    font-family: monospace,serif;
+}
+
+a:not(:hover) {
+    text-decoration: none;
+}
