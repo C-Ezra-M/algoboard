@@ -12,25 +12,30 @@ function getTypeConverter(v) {
         default: return (v) => v
     }
 }
-
+function addAsCssVariable(key) {
+    $("#board").style.setProperty("--" + key, config[key])
+}
+function addAsHtmlAttribute(key) {
+    $("#board").setAttribute(key, config[key])
+}
 const defaultConfig = {
     background: "black",
     rankBackground: "gray",
     rankText: "white",
     eliminatedColor: "red",
     rejoiningColor: "lime",
-    font: "40px Verdana",
-    eliminatedFont: "bold italic 40px Verdana",
+    font: '500 36px "Cooper Hewitt"',
+    statusTagFont: 'bold italic 36px "Cooper Hewitt"',
     boardHeight: "720px",
     boardWidth: "1280px",
-    barHeight: "50px",
-    rankWidth: "100px",
-    rankPadding: "10px",
+    barHeight: "40px",
+    rankWidth: "160px",
+    rankPadding: "40px",
     boardPadding: "10px",
     maxBarWidth: "900px",
-    barGap: "5px",
+    barGap: "2px",
     lang: "en", // right now only affects the formatting of scores
-    beforeIncreaseTime: 2000,
+    beforeIncreaseTime: 0,
     increaseTime: 2500,
     afterIncreaseTime: 0,
     rankAdjustmentTime: 2500,
@@ -39,10 +44,33 @@ const defaultConfig = {
     newEliminations: 1,
     eliminatedBefore: 0,
 }
+const configTargets = {
+    background: addAsCssVariable,
+    rankBackground: addAsCssVariable,
+    rankText: addAsCssVariable,
+    eliminatedColor: addAsCssVariable,
+    rejoiningColor: addAsCssVariable,
+    font: addAsCssVariable,
+    statusTagFont: addAsCssVariable,
+    boardHeight: addAsCssVariable,
+    boardWidth: addAsCssVariable,
+    barHeight: addAsCssVariable,
+    rankWidth: addAsCssVariable,
+    rankPadding: addAsCssVariable,
+    boardPadding: addAsCssVariable,
+    maxBarWidth: addAsCssVariable,
+    barGap: addAsCssVariable,
+    lang: addAsHtmlAttribute,
+}
 let config = defaultConfig;
 let entries = [];
 let pointScale = 1;
 
+function addCssVariablesFromConfig() {
+    for (let i in configTargets) {
+        configTargets[i](i)
+    }
+}
 function formatNum(n) {
     return new Intl.NumberFormat(config.lang).format(n)
 }
@@ -117,6 +145,7 @@ function parseConfig(contents) {
     }).toSorted((a, b) => b.scoreBefore - a.scoreBefore)
     autoEliminate(entries)
     formScoreboard(entries)
+    addCssVariablesFromConfig()
 }
 
 function formScoreboard(entryList) {
