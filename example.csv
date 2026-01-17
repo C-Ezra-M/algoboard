@@ -6,7 +6,7 @@
 \eliminatedColor;red
 \rejoiningColor;lime
 \font;500 36px "Cooper Hewitt"
-\eliminatedFont;bold italic 36px "Cooper Hewitt"
+\statusTagFont;bold italic 36px "Cooper Hewitt"
 \boardHeight;720px
 \boardWidth;1280px
 \barHeight;40px
@@ -15,33 +15,17 @@
 \boardPadding;10px
 \maxBarWidth;900px
 \barGap;2px
-# only affects formatting of numbers at this moment
+# only affects formatting of numbers and text (not ordinals) at this moment
 \lang;en
 # all time settings are in milliseconds (1000ms = 1s)
-\beforeIncreaseTime;2000
+\beforeIncreaseTime;0
 \increaseTime;2500
 \afterIncreaseTime;0
 \rankAdjustmentTime;2500
 \afterRankAdjustmentTime;1000
 \autoEliminate;true
 \eliminatedBefore;1
-#Green;#008000;0;3
-#Olive;#609000;0;15
-#Yellow;#ffff00;0;100
-#Lime;#40ff00;0;40
-#Cyan;#00ffff;0;4
-#Blue;#0030ff;0;25
-#Navy;#002090;0;8
-#Purple;#9000aa;0;2
-#Lavender;#bb80ff;0;30
-#Pink;#ff80ee;0;10
-#Magenta;#ff00ff;0;12
-#Red;#ff0000;0;20
-#Brown;#804000;0;50
-#Orange;#ff8000;0;70
-#Tan;#cc9960;0;1
-#Gray;#808080;0;6
-Gray;#808080;4;29
+Gray;#808080;6;29
 Tan;#cc9960;1;1
 Brown;#804000;50;59
 Orange;#ff8000;70;108
@@ -49,7 +33,7 @@ Yellow;#ffff00;100;160
 Green;#008000;3;33
 Olive;#609000;15;30
 Lime;#40ff00;40;46
-Cyan;#00ffff;6;22
+Cyan;#00ffff;4;22
 Blue;#0030ff;25;30
 Navy;#002090;8;158
 Purple;#9000aa;2;107
