@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Algoboard - Help</title>
+    <link rel="stylesheet" href="src/common.css">
+</head>
+
+<body>
+    <h1>Algoboard v0.1.0 Help</h1>
+    <p><strong>WARNING!</strong> Algoboard is in beta, so things can change without warning.</p>
+
+    <section>
+        <h2 id="basic">Basic usage 🧮</h2>
+        <ol>
+            <li>Download the <a href="https://raw.githubusercontent.com/C-Ezra-M/algoboard/refs/heads/main/example.csv">example input file</a>.</li>
+            <li>Remove all contestant entries and <a href="#contestant">add new ones.</a></li>
+            <li>Modify the <a href="#config">configuration settings</a> to your liking</li>
+            <li>Import the file, and then click "Animate!"</li>
+        </ol>
+        <p>You can use the hash sign (<code>#</code>) at the beginning of a line to create a comment.</p>
+    </section>
+
+    <section>
+        <h2 id="contestant">Contestant entries 📜</h2>
+        <p>Each contestant entry contains the following pieces of information separated by semicolons (<code>;</code>).</p>
+        <p><em>Note:</em> Contestant names cannot begin with a backslash (<code>\</code>). If you want to include a semicolon (<code>;</code>) or begin with a hash sign (<code>#</code>), you must wrap the name in quotation marks (<code>"..."</code>).</p>
+        <table class="content-table">
+            <tr>
+                <th>Order</th>
+                <th>Function</th>
+                <th>Allowed values</th>
+            </tr>
+            <tr>
+                <th>1</th>
+                <td>Sets the contestant's name<br></td>
+                <td>String</td>
+            </tr>
+            <tr>
+                <th>2</th>
+                <td>Sets the contestant's color</td>
+                <td>Any valid CSS <code><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value">background</a></code></td>
+            </tr>
+            <tr>
+                <th>3</th>
+                <td>Sets the contestant's initial score</td>
+                <td>Number</td>
+            </tr>
+            <tr>
+                <th>4</th>
+                <td>Sets the contestant's final score</td>
+                <td>Number</td>
+            </tr>
+            <tr>
+                <th>5</th>
+                <td>Sets the contestant's status, only if the <var>autoEliminate</var> configuration setting is set to <code>false</code></td>
+                <td><code>safe</code> (default), <code>eliminated</code>, <code>newEliminated</code>, <code>rejoining</code></td>
+            </tr>
+        </table>
+    </section>
+
+    
+    <section>
+        <h2 id="config">Configuration setting reference ⚙️</h2>
+        <p>Use a semicolon (<code>;</code>) to separate the key and value, and prefix a configuration key with a backslash (<code>\</code>).</p>
+        <table class="content-table">
+            <tr>
+                <th>Key</th>
+                <th>Function</th>
+                <th>Allowed values</th>
+                <th>Default value</th>
+            </tr>
+            <tr>
+                <th><var>background</var></th>
+                <td>Sets the background of the score block</td>
+                <td>Any valid CSS <code><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background">background</a></code></td>
+                <td><code>black</code></td>
+            </tr>
+            <tr>
+                <th><var>rankBackground</var></th>
+                <td>Sets the background of the rank block</td>
+                <td>Any valid CSS <code><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background">background</a></code></td>
+                <td><code>gray</code></td>
+            </tr>
+            <tr>
+                <th><var>rankText</var></th>
+                <td>Sets the text color of the rank block</td>
+                <td>Any valid CSS <code><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color">color</a></code></td>
+                <td><code>white</code></td>
+            </tr>
+            <tr>
+                <th><var>eliminatedColor</var></th>
+                <td>Sets the text color of the "ELIMINATED" tag</td>
+                <td>Any valid CSS <code><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color">color</a></code></td>
+                <td><code>red</code></td>
+            </tr>
+            <tr>
+                <th><var>rejoiningColor</var></th>
+                <td>Sets the text color of the "REJOINING" tag</td>
+                <td>Any valid CSS <code><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color">color</a></code></td>
+                <td><code>lime</code></td>
+            </tr>
+            <tr>
+                <th><var>font</var></th>
+                <td>Sets the font for everything except the "ELIMINATED" and "REJOINING" tags</td>
+                <td>Any valid CSS <code><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font">font</a></code></td>
+                <td><code>500 36px "Cooper Hewitt"</code></td>
+            </tr>
+            <tr>
+                <th><var>statusTagFont</var></th>
+                <td>Sets the font for the "ELIMINATED" and "REJOINING" tags</td>
+                <td>Any valid CSS <code><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font">font</a></code></td>
+                <td><code>bold italic 36px "Cooper Hewitt"</code></td>
+            </tr>
+            <tr>
+                <th><var>boardHeight</var></th>
+                <td>Sets the height of the board</td>
+                <td>Any valid CSS <code><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/height">height</a></code></td>
+                <td><code>720px</code></td>
+            </tr>
+            <tr>
+                <th><var>boardWidth</var></th>
+                <td>Sets the width of the board</td>
+                <td>Any valid CSS <code><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/width">width</a></code></td>
+                <td><code>1280px</code></td>
+            </tr>
+            <tr>
+                <th><var>barHeight</var></th>
+                <td>Sets the height of the bars</td>
+                <td>Any valid CSS <code><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/height">height</a></code></td>
+                <td><code>40px</code></td>
+            </tr>
+            <tr>
+                <th><var>rankWidth</var></th>
+                <td>Sets the width of the rank block</td>
+                <td>Any valid CSS <code><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/width">width</a></code></td>
+                <td><code>160px</code></td>
+            </tr>
+            <tr>
+                <th><var>rankPadding</var></th>
+                <td>Sets the right padding of the rank block</td>
+                <td>Any valid CSS <code><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding-inline-end">padding-inline-end</a></code></td>
+                <td><code>40px</code></td>
+            </tr>
+            <tr>
+                <th><var>boardPadding</var></th>
+                <td>Sets the padding of the point area (except on the left, which is always set to 0)</td>
+                <td>Any valid CSS <code><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding">padding</a></code></td>
+                <td><code>10px</code></td>
+            </tr>
+            <tr>
+                <th><var>maxBarWidth</var></th>
+                <td>Sets a limit for the width of bars</td>
+                <td>Number with <code>px</code> unit</td>
+                <td><code>900px</code></td>
+            </tr>
+            <tr>
+                <th><var>barGap</var></th>
+                <td>Sets the gap between bars</td>
+                <td>Any valid CSS <code><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/gap">gap</a></code></td>
+                <td><code>2px</code></td>
+            </tr>
+            <tr>
+                <th><var>lang</var></th>
+                <td>Sets the language for scoreboard text and number formatting</td>
+                <td>BCP 47 language code (<a href="https://r12a.github.io/app-subtags/">lookup</a>)</td>
+                <td><code>en</code> (English)</td>
+            </tr>
+            <tr>
+                <th><var>beforeIncreaseTime</var></th>
+                <td>Delay before the animation in milliseconds (1000ms = 1s)</td>
+                <td>Number</td>
+                <td><code>2000</code> (2s)</td>
+            </tr>
+            <tr>
+                <th><var>increaseTime</var></th>
+                <td>Duration of the bar growth and score increase animation in milliseconds (1000ms = 1s)</td>
+                <td>Number</td>
+                <td><code>2500</code> (2.5s)</td>
+            </tr>
+            <tr>
+                <th><var>afterIncreaseTime</var></th>
+                <td>Delay after the bar growth and score increase animation in milliseconds (1000ms = 1s)</td>
+                <td>Number</td>
+                <td><code>0</code></td>
+            </tr>
+            <tr>
+                <th><var>rankAdjustmentTime</var></th>
+                <td>Duration of the bar sorting animation in milliseconds (1000ms = 1s)</td>
+                <td>Number</td>
+                <td><code>2500</code> (2.5s)</td>
+            </tr>
+            <tr>
+                <th><var>afterRankAdjustmentTime</var></th>
+                <td>Delay after the bar sorting animation in milliseconds (1000ms = 1s). After this, tags are applied.</td>
+                <td>Number</td>
+                <td><code>1000</code> (1s)</td>
+            </tr>
+            <tr>
+                <th><var>autoEliminate</var></th>
+                <td>Determine who is eliminated automatically</td>
+                <td>Boolean (<code>true</code> or <code>false</code>)</td>
+                <td><code>true</code></td>
+            </tr>
+            <tr>
+                <th><var>newEliminations</var></th>
+                <td>Sets the number of contestants to be newly eliminated</td>
+                <td>Number</td>
+                <td><code>1</code></td>
+            </tr>
+            <tr>
+                <th><var>eliminatedBefore</var></th>
+                <td>Sets the number of contestants who were eliminated before</td>
+                <td>Number</td>
+                <td><code>0</code></td>
+            </tr>
+        </table>
+    </section>
+    <section>
+        <h2 id="technical">Technical details ℹ️</h2>
+        <ul>
+            <li>The maximum number that can be represented safely is 9,007,199,254,740,991 (~9 quadrillion, or 2^53 - 1). This comes from the limitations of JavaScript. Larger numbers come with precision loss.</li>
+        </ul>
+    </section>
+
+    <footer>
+        <ul>
+            <li><a href=".">App</a></li>
+            <li><a href="https://raw.githubusercontent.com/C-Ezra-M/algoboard/refs/heads/main/example.csv">Example input file</a></li>
+            <li><a href="https://github.com/C-Ezra-M/algoboard/issues/new">Report issue (requires GitHub account)</a></li>
+            <li><a href="https://github.com/C-Ezra-M/algoboard">Repository</a></li>
+        </ul>
+    </footer>
+</body>
+
+</html>
