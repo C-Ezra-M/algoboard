@@ -256,12 +256,7 @@ function showElimination(entryList, beforeElimination) {
 
 async function animateScoreboard() {
     // Reset scoreboard
-    showElimination(entries, true)
-    for (let i of entries) {
-        getBarFromEntry(i).style.transform = ""
-        $(".bar-inner", getBarFromEntry(i)).style.width = pointScale * i.scoreBefore + "px"
-        $(".points", getBarFromEntry(i)).innerText = i.scoreBefore
-    }
+    resetScoreboard()
     await sleep(config.beforeIncreaseTime)
     for (let i of entries) {
         animateBar(i)
@@ -326,5 +321,15 @@ function moveBar(entry, initialPos, finalPos) {
     })
 }
 
+function resetScoreboard() {
+    showElimination(entries, true)
+    for (let i of entries) {
+        getBarFromEntry(i).style.transform = ""
+        $(".bar-inner", getBarFromEntry(i)).style.width = pointScale * i.scoreBefore + "px"
+        $(".points", getBarFromEntry(i)).innerText = i.scoreBefore
+    }
+}
+
 $("#importFile").addEventListener("input", fileImportEvent)
 $("#animate").addEventListener("click", animateScoreboard)
+$("#reset").addEventListener("click", resetScoreboard)
