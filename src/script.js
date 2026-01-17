@@ -203,8 +203,6 @@ async function sleep(t) {
 
 async function fileImportEvent() {
     parseConfig(await this.files[0].text())
-    console.log(config)
-    console.log(entries)
 }
 
 function getItemsByNumber(array, n) {
