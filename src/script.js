@@ -148,7 +148,15 @@ function parseConfig(contents) {
     }).toSorted((a, b) => b.scoreBefore - a.scoreBefore)
     autoEliminate(entries)
     formScoreboard(entries)
+    loadScoreboardIntoTable(entries)
     addCssVariablesFromConfig()
+}
+
+function loadScoreboardIntoTable(entryList) {
+    $("#entry-table").updateData([
+        ["Contestant name", "Color", "Points before", "Points after", "Status"],
+        ...entryList.map(e => [e.name, e.color, e.scoreBefore, e.scoreAfter, ])
+    ])
 }
 
 function formScoreboard(entryList) {
