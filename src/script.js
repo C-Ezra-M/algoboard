@@ -148,15 +148,20 @@ function parseConfig(contents) {
     }).toSorted((a, b) => b.scoreBefore - a.scoreBefore)
     autoEliminate(entries)
     formScoreboard(entries)
-    loadScoreboardIntoTable(entries)
+    loadDataIntoTable(entries)
     addCssVariablesFromConfig()
 }
 
-function loadScoreboardIntoTable(entryList) {
+function loadDataIntoTable(entryList) {
     $("#entry-table").updateData([
         ["Contestant name", "Color", "Points before", "Points after", "Status"],
         ...entryList.map(e => [e.name, e.color, e.scoreBefore, e.scoreAfter, ])
     ])
+}
+
+function loadTableData(data) {
+    // TODO: write function
+    // ["Contestant name", "Color", "Points before", "Points after", "Status"]
 }
 
 function formScoreboard(entryList) {
@@ -344,6 +349,8 @@ $("#animate").addEventListener("click", animateScoreboard)
 $("#reset").addEventListener("click", resetScoreboard)
 $("#showData").addEventListener("click", () => {$("#dataDialog").showModal()})
 
-// $("#entry-table").addEventListener('data-update', (dataUpdate) => {
-//     console.log(dataUpdate.detail);
-// });
+$("#entry-table").addEventListener('data-update', (dataUpdate) => {
+    console.log(dataUpdate.detail);
+    // TODO implement conversion from table to data format
+});
+
