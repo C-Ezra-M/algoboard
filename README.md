@@ -5,7 +5,7 @@
 - The original Processing script was written for the original Processing, which retains some elements from Java. It has a web port, but it is no longer maintained and has been superseded by p5.js.
 - p5.js changes things that necessitate the conversion of functions and the removal of Java's type annotations.
 - The original Processing script is, in my opinion, poorly structured. Changing the number of people to be eliminated is in a different place than the rest of the data.
-- The features are limited by the limitations of Processing.
+- The features are limited by the limitations of Processing. Adding more would mean having to rewrite a lot of code.
 
 ## License information
 
