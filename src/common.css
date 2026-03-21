@@ -115,3 +115,7 @@ pre {
 a:not(:hover) {
     text-decoration: none;
 }
+
+.scroll-container {
+    overflow-x: auto;
+}
