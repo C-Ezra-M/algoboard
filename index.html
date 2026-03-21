@@ -23,12 +23,35 @@
         <input type="file" name="importFile" id="importFile">
         <button name="animate" id="animate">Animate!</button>
         <button name="reset" id="reset">Reset</button>
-        <active-table id="entry-table" columnDropdown='{
-            "isDeleteAvailable": false,
-            "isInsertLeftAvailable": false,
-            "isInsertRightAvailable": true,
-            "isMoveAvailable": false
-        }'></active-table>
+        <button name="showData" id="showData">Show data</button>
+        <dialog id="dataDialog">
+            <form method="dialog">
+                <button>Close</button>
+            </form>
+            <active-table id="entry-table"
+            data='[
+                ["Contestant name", "Color", "Points before", "Points after", "Status"],
+                ["", "", 0, 0, "safe"]
+            ]'
+            customColumnsSettings='[
+                { "headerName": "Contestant name", "defaultColumnTypeName": "text" },
+                { "headerName": "Color", "defaultColumnTypeName": "text" },
+                { "headerName": "Points before", "defaultColumnTypeName": "number" },
+                { "headerName": "Points after", "defaultColumnTypeName": "number" },
+                { "headerName": "Status", "defaultColumnTypeName": "Status" }
+            ]'
+            customColumnTypes='[{
+                "name": "Status",
+                "select": {
+                    "options": ["safe", "eliminated", "newEliminated", "rejoining"],
+                    "canAddMoreOptions": false
+                },
+                "iconSettings": {
+                    "reusableIconName": "select"
+                }
+            }]'
+            ></active-table>
+        </dialog>
     </div>
     <footer>
         <ul>
