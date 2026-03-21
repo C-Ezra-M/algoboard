@@ -1,6 +1,7 @@
 import { parse } from "csv/browser/esm/sync";
 import { enumerate } from "pythonic";
 import { animate, utils } from "animejs";
+import "@fortawesome/fontawesome-free/css/solid.css";
 import "blissfuljs/bliss.shy";
 import "active-table";
 const $ = Bliss;
