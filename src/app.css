@@ -10,8 +10,8 @@
     --boardWidth: 1280px;
     --barHeight: 40px;
     --rankWidth: 160px;
-    --rankPadding: 40px;
-    --boardPadding: 10px;
+    --rankPadding: 0 40px 0 0;
+    --boardPadding: 10px 10px 10px 0;
     --maxBarWidth: 800px;
     --barGap: 2px;
 }
@@ -33,7 +33,7 @@
     .ranks {
         background: var(--rankBackground);
         width: var(--rankWidth);
-        padding-inline-end: var(--rankPadding);
+        padding: var(--rankPadding);
         text-align: right;
         color: var(--rankText);
         float: inline-start;
@@ -44,7 +44,6 @@
     .bars {
         background: var(--background);
         padding: var(--boardPadding);
-        padding-left: 0;
         .bar {
             height: var(--barHeight);
             position: relative;

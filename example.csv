@@ -11,8 +11,8 @@
 \boardWidth;1280px
 \barHeight;40px
 \rankWidth;160px
-\rankPadding;40px
-\boardPadding;10px
+\rankPadding;0 40px 0 0
+\boardPadding;10px 10px 10px 0
 \maxBarWidth;900px
 \barGap;2px
 # only affects formatting of numbers and text (not ordinals) at this moment

@@ -31,8 +31,8 @@ const defaultConfig = {
     boardWidth: "1280px",
     barHeight: "40px",
     rankWidth: "160px",
-    rankPadding: "40px",
-    boardPadding: "10px",
+    rankPadding: "0 40px 0 0",
+    boardPadding: "10px 10px 10px 0",
     maxBarWidth: "900px",
     barGap: "2px",
     lang: "en", // right now only affects the formatting of scores
@@ -332,3 +332,8 @@ function resetScoreboard() {
 $("#importFile").addEventListener("input", fileImportEvent)
 $("#animate").addEventListener("click", animateScoreboard)
 $("#reset").addEventListener("click", resetScoreboard)
+$("#showData").addEventListener("click", () => {$("#dataDialog").showModal()})
+
+// $("#entry-table").addEventListener('data-update', (dataUpdate) => {
+//     console.log(dataUpdate.detail);
+// });
