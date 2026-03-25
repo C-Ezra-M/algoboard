@@ -317,7 +317,7 @@ async function animateBar(entry) {
         duration: config.increaseTime,
         ease: 'linear',
         onUpdate: () => {
-            $(".points", bar).innerText = utils.round(0)(entry.animationScore)
+            $(".points", bar).innerText = formatNum(utils.round(0)(entry.animationScore))
         },
         onComplete: () => entry.resetAnimationScore(),
     })
