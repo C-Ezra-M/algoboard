@@ -1,0 +1,51 @@
+# Start a line with '#' to make a comment.
+# Entries starting with '\' are settings.
+\background;black
+\rankBackground;gray
+\rankText;white
+\eliminatedColor;red
+\rejoiningColor;lime
+\font;500 24px "Cooper Hewitt"
+\statusTagFont;bold italic 24px "Cooper Hewitt"
+\boardHeight;720px
+\boardWidth;1280px
+\barHeight;28px
+\rankWidth;160px
+\rankPadding;0 40px 0 0
+\boardPadding;10px 10px 10px 0
+\maxBarWidth;900px
+\barGap;2px
+# only affects formatting of numbers and text (not ordinals) at this moment
+\lang;en
+# all time settings are in milliseconds (1000ms = 1s)
+\beforeIncreaseTime;0
+\increaseTime;2500
+\afterIncreaseTime;0
+\rankAdjustmentTime;2500
+\afterRankAdjustmentTime;1000
+\autoEliminate;true
+\eliminatedBefore;0
+White;#FFF;0;4
+Silver;#ACB9BF;0;9
+Gray;#808080;0;8
+Black;#333;0;80
+Red;#F00;0;20
+Maroon;#990D00;0;10
+Brown;#994D00;0;12
+Orange;#FF8000;0;15
+Gold;#D9B500;0;170
+Yellow;#FF0;0;2
+Lime;#AF0;0;6
+Green;#26E600;0;1
+Forest;#008C00;0;7
+Teal;#008C75;0;18
+Turquoise;#2AD1A7;0;25
+Cyan;#0FF;0;5
+Sky;#40BFFF;0;30
+Blue;#0080FF;0;100
+Navy;#0000B3;0;60
+Purple;#8C0099;0;3
+Violet;#A0F;0;150
+Lavender;#C4A6FF;0;120
+Pink;#FF80D4;0;200
+Magenta;#F0F;0;40
