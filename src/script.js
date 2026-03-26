@@ -83,8 +83,8 @@ function ordinal(n) {
     if (
         det % 10 <= 3
         && det % 10 !== 0
-        && det < 10
-        || det > 20
+        && (det < 10
+        || det > 20)
     ) {
         if (det % 10 === 1) return n + "st";
         if (det % 10 === 2) return n + "nd";
