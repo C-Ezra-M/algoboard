@@ -313,7 +313,6 @@ async function animateBar(entry) {
     )
     animate(entry, {
         animationScore: entry.scoreAfter,
-        modifier: formatNum,
         duration: config.increaseTime,
         ease: 'linear',
         onUpdate: () => {
