@@ -127,12 +127,9 @@ dialog {
     > :not(:last-child) {
         margin-bottom: 0.5em;
     }
-    > form::after {
-        content: '';
-        display: table;
-        clear: both;
-    }
-    > form > * {
-        float: right;
+    > form {
+        display: flex;
+        justify-content: end;
+        gap: 0.5em;
     }
 }
