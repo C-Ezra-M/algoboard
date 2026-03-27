@@ -303,8 +303,8 @@ async function animateBar(entry) {
     const barIncreaseAnimation = $(".bar-inner", bar).animate(
         {
             width: [
-                pointScale * entry.scoreBefore + "px",
-                pointScale * entry.scoreAfter + "px",
+                pointScale * Math.max(entry.scoreBefore, 0) + "px",
+                pointScale * Math.max(entry.scoreAfter, 0) + "px",
             ],
         }, {
             duration: config.increaseTime,
