@@ -339,7 +339,7 @@ function resetScoreboard() {
     for (let i of entries) {
         getBarFromEntry(i).style.transform = ""
         $(".bar-inner", getBarFromEntry(i)).style.width = pointScale * i.scoreBefore + "px"
-        $(".points", getBarFromEntry(i)).innerText = i.scoreBefore
+        $(".points", getBarFromEntry(i)).innerText = formatNum(i.scoreBefore)
     }
 }
 
