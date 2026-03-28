@@ -68,6 +68,20 @@ const configTargets = {
 let config = defaultConfig;
 let entries = [];
 let pointScale = 1;
+const headerNameMapBeautify = {
+    "contestantName": "Contestant name",
+    "color": "Color",
+    "pointsBefore": "Points before",
+    "pointsAfter": "Points after",
+    "status": "Status",
+}
+const headerNameMapUglify = {
+    "Contestant name": "contestantName",
+    "Color": "color",
+    "Points before": "pointsBefore",
+    "Points after": "pointsAfter",
+    "Status": "status",
+}
 
 function addCssVariablesFromConfig() {
     for (let i in configTargets) {
